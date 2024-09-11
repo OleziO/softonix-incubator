@@ -3,9 +3,19 @@
 
 function sum (a, b) { return a + b } // for test
 
-// eslint-disable-next-line
-function memoize (fn) {
-  // fn ваш код тут...
+export const memoize = (fn) => {
+  const cacheResults = {}
+  const createHash = (...args) => JSON.stringify(args.sort()) // some hash generator fn
+
+  return (...args) => {
+    const key = createHash(args)
+
+    if (!(key in cacheResults)) {
+      cacheResults[key] = fn(...args)
+    }
+
+    return cacheResults[key]
+  }
 }
 
 // приклад виконання вашого коду

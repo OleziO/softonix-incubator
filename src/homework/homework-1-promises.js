@@ -12,5 +12,23 @@ export const arrayHandler = (num) => {
 }
 
 const array = [1, 2, 3, 4, 5]
+const promisesArray = array.map(item => arrayHandler(item))
 
-console.log(array)
+export const chainPromisesArray = (promisesArray) => {
+  promisesArray.reduce((prevPromise, currPromise) => {
+    return prevPromise.then(() => {
+      return currPromise
+        .then(result => {
+          console.log(`Promise resolved: ${result}`)
+          return result
+        })
+    }
+    )
+  }, Promise.resolve())
+    .catch(error => {
+      console.error(`Promise rejected: ${error}`)
+      throw error
+    })
+}
+
+chainPromisesArray(promisesArray)
