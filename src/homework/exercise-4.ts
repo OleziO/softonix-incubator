@@ -1,4 +1,3 @@
-
 /*
 Опишіть клас таким чином, щоб він міг працювати з динамічними типами данних. Для цього використайте generics
 
@@ -16,45 +15,57 @@
     Приклад виконання дивіться нижче
 */
 
+enum EAddTypes {
+  append = 'append',
+  prepend = 'prepend'
+}
+
 interface IUser {
   id: number
   name: string
 }
 
-class Collection {
-  private elements = []
+type TAddType = keyof typeof EAddTypes
+type TPredicate <T> = (item: T) => boolean
 
-  constructor (elements = []) {
+class Collection <T> {
+  private elements: T[] = []
+
+  constructor (elements: T[] = []) {
     this.elements = elements
   }
 
-  get () {
+  get (): T[] {
     return this.elements
   }
 
-  add (el, type) {
-    // ...
+  add (el: T, type: TAddType = EAddTypes.append): void {
+    const method = type === EAddTypes.prepend ? 'unshift' : 'push'
+    this.elements[method](el)
   }
 
-  contains (predicate) {
-    // ...
+  contains (predicate: TPredicate<T>): boolean {
+    return this.elements.some(predicate)
   }
 
-  delete (predicate) {
-    // ...
+  delete (predicate: TPredicate<T>): void {
+    this.elements = this.elements.filter(el => !predicate(el))
   }
 }
 
-const stringCollection = new Collection()
+const stringCollection = new Collection<string>()
 stringCollection.add('Hello, World!')
 stringCollection.contains(el => el === 'Hello, TS')
 
 const strings = stringCollection.get()
 
-const userCollection = new Collection()
+const userCollection = new Collection<IUser>()
 userCollection.add({ id: 1, name: 'Viktor' })
 userCollection.delete(el => el.id === 1)
 const users = userCollection.get()
+
+console.log('strings', strings)
+console.log('users', users)
 
 export {
   strings,

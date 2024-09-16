@@ -1,4 +1,3 @@
-
 /*
   Опишіть тип TPerson на основі IUser та IAdmin та використовуйте це в масиві persons і функції logPerson,
   щоб виправити всі помилки TS.
@@ -16,9 +15,34 @@ interface IAdmin {
   role: string
 }
 
-type TPerson = unknown
+type TPerson = IUser | IAdmin
 
-const persons: IUser[] /* <- замінити на IPerson[] */ = [
+function logPerson (user: TPerson) {
+  console.log(` - ${user.name}, ${user.age}`)
+}
+
+// ---------------- Alternative code ----------------
+// interface IBaseUser {
+//   name: string
+//   age: number
+// }
+
+// interface IUser extends IBaseUser {
+//   occupation: string
+// }
+
+// interface IAdmin extends IBaseUser{
+//   role: string
+// }
+
+// type TPerson = IUser | IAdmin
+
+// function logPerson (user: TPerson) {
+//   console.log(` - ${user.name}, ${user.age}`)
+// }
+// ---------------------------------------------------
+
+const persons: TPerson[] = [
   {
     name: 'Max Mustermann',
     age: 25,
@@ -40,10 +64,6 @@ const persons: IUser[] /* <- замінити на IPerson[] */ = [
     role: 'World saver'
   }
 ]
-
-function logPerson (user: IUser) {
-  console.log(` - ${user.name}, ${user.age}`)
-}
 
 export {
   persons,
