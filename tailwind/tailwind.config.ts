@@ -8,18 +8,32 @@ export default {
   ],
   theme: {
     colors: {
-      ...colors,
-      primary: '#0f172a',
-      gray: '#6b7280',
-      'gray-light': '#f3f4f6',
-      'gray-ultra-light': '#e5e7eb',
-      'gray-medium': '#9ca3af',
-      'gray-dark': '#374151'
+      ...colors
     },
     fontFamily: {
-      main: ['Inter', 'sans-serif']
+      main: ['Inter', 'San', 'Poppins', 'sans-serif']
     },
-    extend: {}
+    extend: {
+      spacing: {
+        7: '26px',
+        20: '72px',
+        36: '136px',
+        40: '144px',
+        500: '500px'
+      },
+      maxWidth: {
+        xl: '1440px'
+      },
+      lineHeight: {
+        '3xl': '86px'
+      },
+      borderRadius: {
+        '3xl': '28px'
+      },
+      fontSize: {
+        '8xl': '84px'
+      }
+    }
   },
   plugins: []
 } satisfies Config

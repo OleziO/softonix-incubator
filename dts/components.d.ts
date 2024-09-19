@@ -7,7 +7,31 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AboutUsSection: typeof import('./../src/components/AboutUs/AboutUsSection.vue')['default']
+    Button: typeof import('./../src/components/common/Button.vue')['default']
+    CarouselButtons: typeof import('./../src/components/common/CarouselButtons.vue')['default']
+    CategoriesItems: typeof import('./../src/components/Categories/CategoriesItems.vue')['default']
+    CategoriesSection: typeof import('./../src/components/Categories/CategoriesSection.vue')['default']
+    CategoryItem: typeof import('./../src/components/Categories/CategoryItem.vue')['default']
+    ContactUsSection: typeof import('./../src/components/ContactUs/ContactUsSection.vue')['default']
+    DestinationGrid: typeof import('./../src/components/DestinationGrid/DestinationGrid.vue')['default']
+    DestinationGridItem: typeof import('./../src/components/DestinationGrid/DestinationGridItem.vue')['default']
+    DestinationItem: typeof import('./../src/components/Destinations/DestinationItem.vue')['default']
+    DestinationSection: typeof import('./../src/components/DestinationGrid/DestinationSection.vue')['default']
+    DestinationsItems: typeof import('./../src/components/Destinations/DestinationsItems.vue')['default']
+    DestinationsSection: typeof import('./../src/components/Destinations/DestinationsSection.vue')['default']
+    Footer: typeof import('./../src/components/Footer/Footer.vue')['default']
+    FooterNavItem: typeof import('./../src/components/Footer/FooterNavItem.vue')['default']
+    Header: typeof import('./../src/components/Header/Header.vue')['default']
+    HeroSection: typeof import('./../src/components/HeroSection/HeroSection.vue')['default']
+    InfoItem: typeof import('./../src/components/OurExperience/InfoItem.vue')['default']
+    InfoItems: typeof import('./../src/components/OurExperience/InfoItems.vue')['default']
+    Input: typeof import('./../src/components/common/Input.vue')['default']
+    Nav: typeof import('./../src/components/Header/Nav.vue')['default']
+    NavItem: typeof import('./../src/components/Header/NavItem.vue')['default']
+    OurExperience: typeof import('./../src/components/OurExperience/OurExperience.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchItem: typeof import('./../src/components/HeroSection/SearchItem.vue')['default']
   }
 }

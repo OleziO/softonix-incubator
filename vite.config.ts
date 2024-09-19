@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import svgLoader from 'vite-svg-loader'
 
 import { IconsPluginCustom } from './vite.config.icons'
 import { ComponentsBuilder } from './vite.config.components'
@@ -11,6 +12,7 @@ import { ImportsBuilder } from './vite.config.imports'
 export default defineConfig({
   plugins: [
     vue(),
+    svgLoader(),
     visualizer({
       open: true
     }),

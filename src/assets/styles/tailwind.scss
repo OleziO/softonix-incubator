@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-primary: '#FAF8ED';
+  --primary: '#2D3134';
+  --secondary: '#F66F4D';
+  --grey: '#5B5F62';
+  --light-grey: '#EAEAEB';
+  --extra-light-grey: '#9498A4';
+  --blue: '#2E476B';
+  --white: '#FDFEFF';
+}
+
+h3 {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 66px;
+}
+
+
