@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-40">
+  <section>
     <div class="flex items-center justify-between px-36  mb-10">
       <h3 class="text-primary mb-12">
         Find Popular <br>

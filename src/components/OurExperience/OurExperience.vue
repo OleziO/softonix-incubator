@@ -1,5 +1,5 @@
 <template>
-  <section class="flex justify-between gap-40 pl-20 pr-36 mb-40">
+  <section class="flex justify-between gap-40 pl-18 pr-36">
     <img :src="OurExperience" alt="Our Experience Image">
     <div>
       <h4 class="font-[Inter] font-semibold text-secondary text-xl mb-5">Our Experience</h4>

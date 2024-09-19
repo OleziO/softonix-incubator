@@ -1,11 +1,11 @@
 <template>
-  <section class="flex justify-center gap-44 pl-[203px] pr-[165px] mb-40">
+  <section class="flex justify-center gap-44 pl-[203px] pr-[165px]">
     <img :src="AboutUs" alt="About Us Image">
     <div class="font-[Inter]">
       <h3
         class="relative before:absolute before:rounded
-        before:left-0 before:top-[-8px] before:content-[''] before:w-16 before:h-2
-      before:bg-gradient-to-r from-[#FFD482] to-[#FFBE82] text-primary mb-7"
+        before:left-0 before:-top-2 before:content-[''] before:w-16 before:h-2
+      before:bg-gradient-to-r from-light-secondary to-extra-light-secondary text-primary mb-7"
       >
         A customer said About us:
       </h3>

@@ -1,12 +1,12 @@
 <template>
   <section
-    class="px-36 mb-36 flex justify-center items-center"
+    class="px-36flex justify-center items-center"
   >
     <div
       class="bg-contact-us bg-cover bg-center flex
       rounded-[30px] justify-center items-center w-full font-[Inter] text-center"
     >
-      <div class="flex flex-col py-20">
+      <div class="flex flex-col py-18">
         <h3 class="text-primary mb-4 text-[40px]">Sign up to our newsletter</h3>
         <p class="text-grey mb-10">
           Reciev latest news, update, and many other things <br>

@@ -1,11 +1,11 @@
 <template>
   <li>
     <a
-      :href="link" class="font-[Poppins] text-blue
+      :href="link" class="cursor-pointer font-[Poppins] text-blue
         relative before:absolute
-        before:left-0 before:bottom-[-8px] before:content-['']
+        before:left-0 before:-bottom-2 before:content-['']
         hover:before:w-4 hover:before:h-1
-        before:bg-gradient-to-r from-[#FFD482] to-[#FFBE82] mb-7"
+        before:bg-gradient-to-r from-light-secondary to-extra-light-secondary mb-7"
     >
       <slot />
     </a>

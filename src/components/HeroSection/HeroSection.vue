@@ -1,6 +1,6 @@
 <template>
   <section
-    class="w-full flex justify-between gap-40 items-center pl-36 pr-32 mb-36"
+    class="w-full flex justify-between gap-40 items-center pl-36 pr-32"
   >
     <div>
       <h1 class="font-[Sen] font-bold text-8xl leading-3xl text-primary mb-7">
@@ -37,9 +37,9 @@
         <Button
           type="standart"
           class="flex justify-center items-center bg-secondary rounded-full
-          w-14 h-14"
+          w-14 h-14 hover:bg-transparent hover:border-2 hover:border-secondary group"
         >
-          <Search />
+          <Search class="group-hover:stroke-secondary" />
         </Button>
       </div>
     </div>
@@ -52,5 +52,4 @@ import HeroSection from '@/assets/img/HeroSection.png'
 import Location from '@/assets/img/Location.svg'
 import Date from '@/assets/img/Date.svg'
 import Search from '@/assets/img/Search.svg'
-import SearchItem from './SearchItem.vue'
 </script>

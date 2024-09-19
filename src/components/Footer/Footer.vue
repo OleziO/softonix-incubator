@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full px-36 font-[Inter] flex justify-between mb-20">
+  <footer class="w-full px-36 font-[Inter] flex justify-between mb-18">
     <div>
       <Logo class="mb-7" />
       <p class="text-grey mb-10">

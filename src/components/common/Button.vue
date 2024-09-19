@@ -5,7 +5,10 @@
   >
     <slot />
   </button>
-  <button v-else-if="type === EButtonTypes.standart">
+  <button
+    v-else-if="type === EButtonTypes.standart" class="font-[Poppins]
+    flex justify-center items-center"
+  >
     <slot />
   </button>
 </template>

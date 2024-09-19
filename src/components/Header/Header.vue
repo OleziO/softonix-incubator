@@ -1,7 +1,7 @@
 <template>
-  <header class="w-full max-w-xl py-6 px-36 flex justify-between mb-2.5">
+  <header class="w-full max-w-xl py-6 px-36 flex justify-between">
     <div class="flex items-center">
-      <Logo class="mr-20" />
+      <Logo class="mr-18" />
       <Nav>
         <NavItem link="">Home</NavItem>
         <NavItem>About us</NavItem>

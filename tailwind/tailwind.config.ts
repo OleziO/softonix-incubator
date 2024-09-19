@@ -16,10 +16,9 @@ export default {
     extend: {
       spacing: {
         7: '26px',
-        20: '72px',
+        18: '72px',
         36: '136px',
-        40: '144px',
-        500: '500px'
+        40: '144px'
       },
       maxWidth: {
         xl: '1440px'

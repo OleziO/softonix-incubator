@@ -5,6 +5,8 @@ export const colors = {
   'bg-primary': '#FAF8ED',
   primary: '#2D3134',
   secondary: '#F66F4D',
+  'light-secondary': '#FFD482',
+  'extra-light-secondary': '#FFBE82',
   grey: '#5B5F62',
   'light-grey': '#EAEAEB',
   'extra-light-grey': '#9498A4',
