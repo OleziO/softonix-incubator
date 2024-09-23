@@ -1,13 +1,25 @@
 <template>
   <div class="max-w-[1440px] p-6">
-    <h3 class="font-medium m-0">Contact list</h3>
+    <div class="flex gap-4 items-center">
+      <h3 class="font-medium m-0">Contact list</h3>
+      <button
+        type="button"
+        class="bg-blue-500 cursor-pointer text-warmGray-50
+        rounded-xl py-2 px-4 disabled:bg-blue-200 disabled:cursor-not-allowed"
+        :disabled="isCreateMode"
+        @click="isCreateMode = true"
+      >
+        Add contact
+      </button>
+    </div>
 
     <div class="contact-list grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+      <NewContactItem v-if="isCreateMode" v-model="isCreateMode" @createContact="createContact" />
       <ContactItem
         v-for="(contact, index) in contacts"
         :key="contact.id"
         :contact="contact"
-        @delete="deleteContact(index)"
+        @delete="deleteContact(index, !!contact.id)"
         @save="onContactSave($event, index)"
       />
     </div>
@@ -18,6 +30,7 @@
 import { ref } from 'vue'
 import type { IContact } from '@/types'
 import ContactItem from '@/components/ContactItem.vue'
+import NewContactItem from './components/NewContactItem.vue'
 
 const contacts = ref<IContact[]>([
   {
@@ -40,8 +53,17 @@ const contacts = ref<IContact[]>([
   }
 ])
 
-function deleteContact (index: number) {
-  contacts.value.splice(index, 1)
+const isCreateMode = ref(false)
+
+function deleteContact (index: number, shouldConfirm: boolean) {
+  if (!shouldConfirm || window.confirm('Are you sure you want to delete this contact?')) {
+    contacts.value.splice(index, 1)
+  }
+}
+
+function createContact (contact: IContact) {
+  contacts.value.unshift({ ...contact, id: contacts.value.length })
+  isCreateMode.value = false
 }
 
 function onContactSave (contact: IContact, index: number) {
