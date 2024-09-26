@@ -12,7 +12,7 @@
   </div>
 
   <div class="header-section my-4">
-    <SearchInput v-model="search" v-model:filtered-contacts="filteredContacts" />
+    <SearchInput v-model="search" />
     <MultiSelect v-model="selectedFilters" :items="roles" />
     <AppButton class="min-w-[128px] capitalize" @click="onChangeSortOrder">{{ selectedSortOption }}</AppButton>
   </div>
