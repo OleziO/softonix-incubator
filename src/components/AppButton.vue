@@ -6,7 +6,7 @@
       'text-white text-sm font-medium rounded p-2 inline-flex items-center justify-center'
     ]"
   >
-    <div class="mr-2">
+    <div v-if="$slots.icon" class="mr-2">
       <slot name="icon" />
     </div>
 

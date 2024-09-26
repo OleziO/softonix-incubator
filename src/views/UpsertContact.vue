@@ -7,6 +7,8 @@
         <AppInput v-model.trim="contactForm.description" placeholder="Description" />
 
         <AppInput v-model.trim="contactForm.image" placeholder="Image Link" />
+
+        <AppInput v-model.trim="contactForm.role" placeholder="Role" />
       </div>
 
       <template #footer>
@@ -61,6 +63,7 @@ const contactForm = reactive<IContact>(currentContact.value
   ? { ...currentContact.value }
   : {
     id: contacts.value.length + 1,
+    role: '',
     name: '',
     description: '',
     image: ''
