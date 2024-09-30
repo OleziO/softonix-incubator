@@ -3,10 +3,10 @@
     <nav>
       <ul class="flex gap-4 text-blue-500">
         <li class="hover:text-blue-700">
-          <RouterLink to="/jobOpening">Job Openings</RouterLink>
+          <RouterLink activeClass="text-blue-800" to="/jobOpening">Job Openings</RouterLink>
         </li>
         <li class="hover:text-blue-700">
-          <RouterLink to="/contacts">Contacts</RouterLink>
+          <RouterLink activeClass="text-blue-800" to="/contacts">Contacts</RouterLink>
         </li>
       </ul>
     </nav>

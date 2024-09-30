@@ -3,7 +3,7 @@ import HeaderLayout from './layouts/HeaderLayout.vue'
 </script>
 
 <template>
-  <div class="max-w-[1440px]">
+  <div>
     <HeaderLayout>
       <RouterView />
     </HeaderLayout>
