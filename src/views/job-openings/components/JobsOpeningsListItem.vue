@@ -8,7 +8,7 @@
       <ul>
         <li
           v-for="(visibleJob, index) in visibleJobs(department)"
-          :key="index" class="mt-1 relative"
+          :key="index" class="mt-1 relative max-w-full"
         >
           <div class="absolute bg-gray w-2 h-px -left-4 top-1/2 -translate-y-1/2" />
           <div class="flex gap-1 items-center">
@@ -16,7 +16,7 @@
               class="w-1.5 h-1.5 bg-green-500 rounded-full"
               :class="{'bg-red-500': visibleJob.isClosed}"
             />
-            <a :href="visibleJob.url" target="_blank">{{ visibleJob.title }}</a>
+            <a :href="visibleJob.url" target="_blank" class="truncate">{{ visibleJob.title }}</a>
           </div>
         </li>
       </ul>

@@ -1,10 +1,10 @@
 <template>
   <div class="flex w-full">
     <div
-      class="min-w-[400px]
+      class="w-[400px]
       text-xs text-greyrounded-sm border
     border-gray p-2 max-h-[calc(100vh-100px)]
-      overflow-y-hidden"
+      flex flex-col items-start"
     >
       <h5 class="uppercase text-sm">Job Openings</h5>
       <MultiSelect
@@ -22,7 +22,7 @@
       </div>
       <JobsOpeningsList
         :jobs="filteredJobs"
-        class="my-2 overflow-y-auto h-full"
+        class="my-2 overflow-y-auto h-full w-full"
       />
     </div>
   </div>
