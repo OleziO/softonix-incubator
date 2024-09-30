@@ -30,12 +30,12 @@
 
 <script setup lang="ts">
 
-import JobsOpeningsList from './JobsOpeningsList.vue'
+import JobsOpeningsList from './components/JobsOpeningsList.vue'
 
 import { departments } from '@/_homework/departments'
 import { type IJobOpening } from '@/_homework/job-openings'
 import type { IMultiSelectItem } from '@/components/multi-select/MultiSelect.vue'
-import { useDepartmentsStore } from '@/store/models/department.store'
+import { useDepartmentsStore } from './job-openings.store'
 
 export interface IGroupedJobs {
   name: string

@@ -223,6 +223,7 @@
     "arrayToObject": true,
     "GeneralService": true,
     "generalService": true,
-    "services": true
+    "services": true,
+    "useDepartmentsStore": true
   }
 }

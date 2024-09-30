@@ -71,6 +71,7 @@ declare global {
   const useContactsStore: typeof import('../src/views/contacts/contacts.store')['useContactsStore']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDepartmentsStore: typeof import('../src/views/job-openings/settings.store')['useDepartmentsStore']
   const useGlobalProperties: typeof import('../src/composables/global-properties')['useGlobalProperties']
   const useLink: typeof import('vue-router')['useLink']
   const useRoute: typeof import('vue-router')['useRoute']
