@@ -34,12 +34,11 @@ export const useJobOpeningStore = defineStore('jobOpeningStore', () => {
         }
       })
 
-      if (!isGrouped) {
+      if (!isGrouped && job.departments.length) {
         otherJobs.jobs.push(job)
         otherJobs.count++
       }
     })
-    console.log(otherJobs)
 
     return { ...groupedJobs, other: otherJobs }
   })
