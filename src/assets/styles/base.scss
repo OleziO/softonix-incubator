@@ -48,3 +48,7 @@ img, svg {
 body:not(.user-is-tabbing) *:focus {
   outline: none !important;
 }
+
+li {
+  list-style: none;
+}
