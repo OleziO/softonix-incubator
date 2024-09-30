@@ -1,6 +1,6 @@
-import { jobOpenings } from '@/_homework/job-openings'
-import { contactsRoutes } from '@/views/contacts/contacts.routes'
+import { jobOpeningsRouteNames } from '@/views/job-openings/job-openings.route'
+import { contactRouteNames } from '@/views/contacts/contacts.routes'
 export const routeNames = {
-  ...contactsRoutes,
-  ...jobOpenings
+  ...contactRouteNames,
+  ...jobOpeningsRouteNames
 }
