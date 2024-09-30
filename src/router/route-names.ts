@@ -1,5 +1,6 @@
-import { contactRouteNames } from '@/views/contacts/contacts.routes'
-
+import { jobOpenings } from '@/_homework/job-openings'
+import { contactsRoutes } from '@/views/contacts/contacts.routes'
 export const routeNames = {
-  ...contactRouteNames
+  ...contactsRoutes,
+  ...jobOpenings
 }

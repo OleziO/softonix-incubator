@@ -339,7 +339,7 @@ export const jobOpenings: IJobOpening[] = [
       'administration',
       'support'
     ],
-    isClosed: false,
+    isClosed: true,
     url: 'https://www.pepsicojobs.com/main/jobs/253208BR?lang=en-us&previousLocale=en-US'
   },
   {
