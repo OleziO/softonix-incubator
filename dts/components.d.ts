@@ -16,6 +16,8 @@ declare module 'vue' {
     IconEnvelope: typeof import('./../src/components/icons/IconEnvelope.vue')['default']
     IconPhone: typeof import('./../src/components/icons/IconPhone.vue')['default']
     IconPlus: typeof import('./../src/components/icons/IconPlus.vue')['default']
+    JobsOpeningsList: typeof import('./../src/views/job-openings/components/JobsOpeningsList.vue')['default']
+    JobsOpeningsListItem: typeof import('./../src/views/job-openings/components/JobsOpeningsListItem.vue')['default']
     MultiSelect: typeof import('./../src/components/multi-select/MultiSelect.vue')['default']
     MultiSelectTabs: typeof import('./../src/components/multi-select/MultiSelectTabs.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

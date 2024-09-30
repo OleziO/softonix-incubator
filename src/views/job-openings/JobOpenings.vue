@@ -11,7 +11,7 @@
         v-model="searchDeparments"
         placeholder="Select Departments"
         class="mt-2" title="Departments:"
-        :items="[...departments, other]"
+        :items="departmentsItems"
       />
 
       <div class="mt-1">
@@ -32,16 +32,9 @@
 
 import JobsOpeningsList from './components/JobsOpeningsList.vue'
 
-import { departments } from '@/_homework/departments'
-import { type IJobOpening } from '@/_homework/job-openings'
 import type { IMultiSelectItem } from '@/components/multi-select/MultiSelect.vue'
-import { useDepartmentsStore } from './job-openings.store'
+import { useJobOpeningStore } from './job-openings.store'
 
-export interface IGroupedJobs {
-  name: string
-  count: number
-  jobs: IJobOpening[]
-}
 const other = {
   name: 'Other',
   value: 'Other'
@@ -49,18 +42,25 @@ const other = {
 
 const searchDeparments = ref<IMultiSelectItem[]>([])
 
-const departmentStore = useDepartmentsStore()
+const departmentStore = useJobOpeningStore()
 
 const searchDeparmentsNames = computed(() => searchDeparments.value.map(item => item.name))
-const totalCount = computed(() => departmentStore.hashJobs.reduce((acc, item) => acc + item.count, 0))
+const totalCount = computed(() => jobsArr.value.reduce((acc, item) => acc + item.count, 0))
 const selectedCount = computed(() => filteredJobs.value.reduce((acc, item) => acc + item.count, 0))
+const jobsArr = computed(() => Object.values(departmentStore.hashJobs))
+const departmentsItems = computed(() => {
+  return [...departmentStore.departments.filter(item => {
+    const jobItem = departmentStore.hashJobs[item.value as keyof typeof departmentStore.hashJobs]
+    return !!jobItem
+  }), other]
+})
 
 const filteredJobs = computed(() => {
-  const filtered = departmentStore.hashJobs.filter(item => {
+  const filtered = jobsArr.value.filter(item => {
     return [...searchDeparmentsNames.value, other].includes(item.name)
   })
 
-  return [...(filtered.length ? filtered : departmentStore.hashJobs)].sort((a, b) => {
+  return [...(filtered.length ? filtered : jobsArr.value)].sort((a, b) => {
     if (a.name !== other.name && b.name !== other.name) {
       return a.name.localeCompare(b.name)
     } else {

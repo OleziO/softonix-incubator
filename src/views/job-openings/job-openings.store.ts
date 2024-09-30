@@ -4,9 +4,9 @@ import { ref } from 'vue'
 import { generalService } from '@/services/general.service'
 import { departments as mockDepartments, type IDepartment } from '@/_homework/departments'
 import { jobOpenings as mockJobs, type IJobOpening } from '@/_homework/job-openings'
-import type { IGroupedJobs } from '@/views/job-openings/JobOpenings.vue'
+import type { IGroupedJobs } from './job-openings'
 
-export const useDepartmentsStore = defineStore('departmentsStore', () => {
+export const useJobOpeningStore = defineStore('jobOpeningStore', () => {
   const departments = ref<IDepartment[]>(mockDepartments)
   const hashDepartments = computed(() => generalService.arrayToObject(departments.value, 'value'))
   const jobs = ref<IJobOpening[]>(mockJobs)
@@ -39,8 +39,9 @@ export const useDepartmentsStore = defineStore('departmentsStore', () => {
         otherJobs.count++
       }
     })
+    console.log(otherJobs)
 
-    return [...Object.values(groupedJobs), otherJobs]
+    return { ...groupedJobs, other: otherJobs }
   })
 
   return {

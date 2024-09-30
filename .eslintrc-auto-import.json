@@ -224,6 +224,7 @@
     "GeneralService": true,
     "generalService": true,
     "services": true,
-    "useDepartmentsStore": true
+    "useDepartmentsStore": true,
+    "useJobOpeningStore": true
   }
 }

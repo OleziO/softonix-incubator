@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IGroupedJobs } from './JobOpenings.vue'
+import type { IGroupedJobs } from '../job-openings'
 import JobsOpeningsListItem from './JobsOpeningsListItem.vue'
 
 defineProps<{
