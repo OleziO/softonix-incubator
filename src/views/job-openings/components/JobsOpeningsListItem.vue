@@ -2,7 +2,7 @@
   <div ref="jobItemRef">
     <button @click="toggleShowList">
       <h5 class="font-bold text-sm">
-        {{ name ? name.name : 'Other' }} ({{ count }})
+        {{ name ? name.name : customDepartment.extendedDepartmentsOther.name }} ({{ count }})
       </h5>
     </button>
 
@@ -36,6 +36,8 @@
 </template>
 
 <script setup lang="ts">
+import { customDepartment } from '../job-openings.service'
+
 const props = defineProps<{
   department: IGroupedJobs
 }>()

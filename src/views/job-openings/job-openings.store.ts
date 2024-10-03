@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { generalService } from '@/services/general.service'
 import { departments as mockDepartments } from '@/_homework/departments'
 import { jobOpenings as mockJobs } from '@/_homework/job-openings'
+import { customDepartment } from './job-openings.service'
 
 export const useJobOpeningStore = defineStore('jobOpeningStore', () => {
   const departments = ref<IDepartment[]>(mockDepartments)
@@ -13,7 +14,7 @@ export const useJobOpeningStore = defineStore('jobOpeningStore', () => {
   const hashJobs = computed(() => {
     const groupedJobs: Record<string, IGroupedJobs> = {}
     const otherJobs: Record<string, IGroupedJobs> = {
-      other: { name: 'other', items: [] }
+      other: { name: customDepartment.extendedDepartmentsOther.value, items: [] }
     }
 
     jobs.value.forEach((job) => {

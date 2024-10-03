@@ -34,11 +34,8 @@ import JobsOpeningsList from './components/JobsOpeningsList.vue'
 
 import type { IMultiSelectItem } from '@/components/multi-select/MultiSelect.vue'
 import { useJobOpeningStore } from './job-openings.store'
+import { customDepartment } from './job-openings.service'
 
-const other: IDepartment = {
-  name: 'Other',
-  value: 'other'
-}
 const departmentStore = storeToRefs(useJobOpeningStore())
 
 const searchDeparments = ref<IMultiSelectItem[]>([])
@@ -51,7 +48,9 @@ const totalCount = computed(() => {
 const selectedCount = computed(() => filteredJobs.value.reduce((acc, item) => acc + item.items.length, 0))
 
 const departmentsItems = computed(() => {
-  return [...departmentStore.departments.value.filter(item => !!departmentStore.hashJobs.value[item.value]), other]
+  return [...departmentStore.departments.value.filter(item => {
+    return !!departmentStore.hashJobs.value[item.value]
+  }), customDepartment.extendedDepartmentsOther]
 })
 const searchDeparmentsNames = computed(() => searchDeparments.value.map(item => item.value))
 
@@ -66,7 +65,8 @@ const filteredJobs = computed(() => {
   }
 
   return filtered.sort((a, b) => {
-    if (a.name !== other.value && b.name !== other.value) {
+    if (a.name !== customDepartment.extendedDepartmentsOther.value &&
+     b.name !== customDepartment.extendedDepartmentsOther.value) {
       return a.name.localeCompare(b.name)
     } else {
       return 1
