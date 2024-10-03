@@ -12,32 +12,31 @@ export const useJobOpeningStore = defineStore('jobOpeningStore', () => {
   const jobs = ref<IJobOpening[]>(mockJobs)
 
   const hashJobs = computed(() => {
-    const groupedJobs: Record<string, IGroupedJobs> = {}
     const otherJobs: Record<string, IGroupedJobs> = {
       other: { name: customDepartment.extendedDepartmentsOther.value, items: [] }
     }
 
-    jobs.value.forEach((job) => {
+    return jobs.value.reduce((acc, job) => {
       job.departments.forEach((department) => {
         const departmentData = hashDepartments.value[department]
 
         if (departmentData) {
           const { value } = departmentData
 
-          if (!groupedJobs[value]) {
-            groupedJobs[value] = { name: value, items: [] }
+          if (!acc[value]) {
+            acc[value] = { name: value, items: [] }
           }
 
-          groupedJobs[value].items.push(job)
+          acc[value].items.push(job)
         }
       })
 
       if (!job.departments.length) {
-        otherJobs.other.items.push(job)
+        acc.other.items.push(job)
       }
-    })
 
-    return { ...groupedJobs, ...otherJobs }
+      return acc
+    }, { ...otherJobs })
   })
 
   return {

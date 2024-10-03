@@ -42,8 +42,9 @@ const searchDeparments = ref<IMultiSelectItem[]>([])
 
 const totalCount = computed(() => {
   const allItems = jobsArr.value.flatMap(jobs => jobs.items)
+  const uniqueItems = new Set(allItems)
 
-  return allItems.length
+  return uniqueItems.size
 })
 const selectedCount = computed(() => filteredJobs.value.reduce((acc, item) => acc + item.items.length, 0))
 
@@ -69,7 +70,7 @@ const filteredJobs = computed(() => {
      b.name !== customDepartment.extendedDepartmentsOther.value) {
       return a.name.localeCompare(b.name)
     } else {
-      return 1
+      return -1
     }
   })
 })
