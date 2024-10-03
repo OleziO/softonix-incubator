@@ -61,7 +61,6 @@ const filteredJobs = computed(() => {
 
   if (searchDeparmentsNames.value.length) {
     filtered = jobsArr.value.filter(item => {
-      console.log(item.name === other.value)
       return [...searchDeparmentsNames.value].includes(item.name)
     })
   }
