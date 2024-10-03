@@ -66,7 +66,7 @@ function toggleShowList () {
   shoulListShowing.value = !shoulListShowing.value
 }
 
-const toggleShowMore = () => {
+function toggleShowMore () {
   showMore.value = !showMore.value
 }
 </script>
