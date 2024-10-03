@@ -1,5 +1,16 @@
-export interface IGroupedJobs {
+interface IJobOpening {
+  title: string
+  id: string
+  departments: string[]
+  isClosed: boolean
+  url: string
+}
+interface IDepartment {
   name: string
-  count: number
-  jobs: IJobOpening[]
+  value: string
+}
+
+interface IGroupedJobs {
+  name: string
+  items: IJobOpening[]
 }

@@ -1,11 +1,3 @@
-export interface IJobOpening {
-  title: string
-  id: string
-  departments: string[]
-  isClosed: boolean
-  url: string
-}
-
 export const jobOpenings: IJobOpening[] = [
   {
     title: 'Merchandiser',

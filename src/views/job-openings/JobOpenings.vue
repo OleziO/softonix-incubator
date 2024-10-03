@@ -15,7 +15,7 @@
       />
 
       <div class="mt-1">
-        <p v-if="selectedCount && selectedCount !=totalCount">
+        <p v-if="searchDeparments.length && selectedCount !=totalCount">
           Showing {{ selectedCount }} out of {{ totalCount }} job openings
         </p>
         <p v-else>Showing {{ totalCount }} job openings</p>
@@ -35,33 +35,39 @@ import JobsOpeningsList from './components/JobsOpeningsList.vue'
 import type { IMultiSelectItem } from '@/components/multi-select/MultiSelect.vue'
 import { useJobOpeningStore } from './job-openings.store'
 
-const other = {
+const other: IDepartment = {
   name: 'Other',
-  value: 'Other'
+  value: 'other'
 }
+const departmentStore = useJobOpeningStore()
 
 const searchDeparments = ref<IMultiSelectItem[]>([])
 
-const departmentStore = useJobOpeningStore()
+const totalCount = computed(() => {
+  const allItems = jobsArr.value.flatMap(jobs => jobs.items)
 
-const searchDeparmentsNames = computed(() => searchDeparments.value.map(item => item.name))
-const totalCount = computed(() => jobsArr.value.reduce((acc, item) => acc + item.count, 0))
-const selectedCount = computed(() => filteredJobs.value.reduce((acc, item) => acc + item.count, 0))
-const jobsArr = computed(() => Object.values(departmentStore.hashJobs))
-const departmentsItems = computed(() => {
-  return [...departmentStore.departments.filter(item => {
-    const jobItem = departmentStore.hashJobs[item.value as keyof typeof departmentStore.hashJobs]
-    return !!jobItem
-  }), other]
+  return allItems.length
 })
+const selectedCount = computed(() => filteredJobs.value.reduce((acc, item) => acc + item.items.length, 0))
 
+const departmentsItems = computed(() => {
+  return [...departmentStore.departments.filter(item => !!departmentStore.hashJobs[item.value]), other]
+})
+const searchDeparmentsNames = computed(() => searchDeparments.value.map(item => item.value))
+
+const jobsArr = computed(() => Object.values(departmentStore.hashJobs))
 const filteredJobs = computed(() => {
-  const filtered = jobsArr.value.filter(item => {
-    return [...searchDeparmentsNames.value, other].includes(item.name)
-  })
+  let filtered: IGroupedJobs[] = [...jobsArr.value]
 
-  return [...(filtered.length ? filtered : jobsArr.value)].sort((a, b) => {
-    if (a.name !== other.name && b.name !== other.name) {
+  if (searchDeparmentsNames.value.length) {
+    filtered = jobsArr.value.filter(item => {
+      console.log(item.name === other.value)
+      return [...searchDeparmentsNames.value].includes(item.name)
+    })
+  }
+
+  return filtered.sort((a, b) => {
+    if (a.name !== other.value && b.name !== other.value) {
       return a.name.localeCompare(b.name)
     } else {
       return 1
