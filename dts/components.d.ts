@@ -12,7 +12,6 @@ declare module 'vue' {
     AppInput: typeof import('./../src/components/AppInput.vue')['default']
     Card: typeof import('./../src/components/Card.vue')['default']
     ContactItem: typeof import('./../src/views/contacts/components/ContactItem.vue')['default']
-    copy: typeof import('../src/components/icons/IconCross.vue')['default']
     IconCross: typeof import('./../src/components/icons/IconCross.vue')['default']
     IconEnvelope: typeof import('./../src/components/icons/IconEnvelope.vue')['default']
     IconPhone: typeof import('./../src/components/icons/IconPhone.vue')['default']

@@ -12,6 +12,7 @@ declare global {
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const createPinia: typeof import('pinia')['createPinia']
+  const customDepartment: typeof import('../src/views/job-openings/job-openings.service')['customDepartment']
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']

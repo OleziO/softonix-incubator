@@ -9,7 +9,7 @@
     <div v-if="shoulListShowing" class="text-xs text-blue-500 pl-4 border-l border-gray mb-1">
       <ul>
         <li
-          v-for="(visibleJob, index) in visibleJobs(department.items)"
+          v-for="(visibleJob, index) in visibleJobs"
           :key="index" class="mt-1 relative max-w-full"
         >
           <div class="absolute bg-gray w-2 h-px -left-4 top-1/2 -translate-y-1/2" />
@@ -24,7 +24,7 @@
       </ul>
 
       <button
-        v-if="count > jobDisplayLimit"
+        v-if="count > 5"
         class="font-bold mt-1 relative"
         @click="toggleShowMore()"
       >
@@ -41,7 +41,8 @@ import { customDepartment } from '../job-openings.service'
 const props = defineProps<{
   department: IGroupedJobs
 }>()
-const jobDisplayLimit = 5
+
+const jobsLimit = 5
 
 const departmentStore = storeToRefs(useJobOpeningStore())
 
@@ -51,11 +52,15 @@ const shoulListShowing = ref(true)
 const name = computed(() => departmentStore.hashDepartments.value[props.department.name])
 const count = computed(() => props.department.items.length)
 
-const visibleJobs = (jobs: IJobOpening[]) => {
-  return count.value > jobDisplayLimit && !showMore.value
-    ? jobs.slice(0, jobDisplayLimit)
-    : jobs
-}
+const jobDisplayLimit = computed(() => {
+  return !showMore.value ? jobsLimit : props.department.items.length
+})
+
+const visibleJobs = computed(() => {
+  const items = props.department.items
+
+  return items.slice(0, jobDisplayLimit.value)
+})
 
 function toggleShowList () {
   shoulListShowing.value = !shoulListShowing.value
