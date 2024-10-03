@@ -18,7 +18,7 @@
     </el-button>
   </div>
   <el-tabs v-model="activeTab">
-    <el-tab-pane label="Card View" name="card">
+    <el-tab-pane label="List View" name="card">
       <CardView
         :contacts="contacts"
         @itemDelete="deleteContact"

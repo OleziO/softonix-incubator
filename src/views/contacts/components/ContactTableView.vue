@@ -1,8 +1,14 @@
 <template>
-  <el-table :data="contacts" style="width: 100%" @row-click="onItemClick">
+  <el-table
+    height="100%"
+    :data="contacts"
+    row-key="id"
+    empty-text="No Data"
+    style="width: 100%;"
+    @row-click="onItemClick"
+  >
     <el-table-column
       width="130"
-      prop="image"
       label="Contact Avatar"
     >
       <template #default="{row}">
@@ -45,7 +51,6 @@
     </el-table-column>
 
     <el-table-column
-      class="flex items-center"
       label="Actions"
       fixed="right"
       width="150"
