@@ -39,7 +39,7 @@ const other: IDepartment = {
   name: 'Other',
   value: 'other'
 }
-const departmentStore = useJobOpeningStore()
+const departmentStore = storeToRefs(useJobOpeningStore())
 
 const searchDeparments = ref<IMultiSelectItem[]>([])
 
@@ -51,11 +51,11 @@ const totalCount = computed(() => {
 const selectedCount = computed(() => filteredJobs.value.reduce((acc, item) => acc + item.items.length, 0))
 
 const departmentsItems = computed(() => {
-  return [...departmentStore.departments.filter(item => !!departmentStore.hashJobs[item.value]), other]
+  return [...departmentStore.departments.value.filter(item => !!departmentStore.hashJobs.value[item.value]), other]
 })
 const searchDeparmentsNames = computed(() => searchDeparments.value.map(item => item.value))
 
-const jobsArr = computed(() => Object.values(departmentStore.hashJobs))
+const jobsArr = computed(() => Object.values(departmentStore.hashJobs.value))
 const filteredJobs = computed(() => {
   let filtered: IGroupedJobs[] = [...jobsArr.value]
 

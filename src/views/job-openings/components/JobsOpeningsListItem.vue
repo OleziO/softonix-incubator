@@ -41,12 +41,12 @@ const props = defineProps<{
 }>()
 const jobDisplayLimit = 5
 
-const departmentStore = useJobOpeningStore()
+const departmentStore = storeToRefs(useJobOpeningStore())
 
 const showMore = ref(false)
 const shoulListShowing = ref(true)
 
-const name = computed(() => departmentStore.hashDepartments[props.department.name])
+const name = computed(() => departmentStore.hashDepartments.value[props.department.name])
 const count = computed(() => props.department.items.length)
 
 const visibleJobs = (jobs: IJobOpening[]) => {
