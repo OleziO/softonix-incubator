@@ -20,6 +20,8 @@ export const useContactsStore = defineStore('contactsStore', () => {
     }
   ])
 
+  const activeTab = ref<'card'| 'table'>('card')
+
   function addContact (contact: IContact) {
     contacts.value.push(contact)
   }
@@ -36,6 +38,7 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
   return {
     contacts,
+    activeTab,
     addContact,
     deleteContact,
     updateContact

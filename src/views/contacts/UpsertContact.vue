@@ -1,34 +1,46 @@
 <template>
   <div class="flex justify-center">
-    <Card :title="cardTitle" class="w-[350px]">
+    <el-card :title="cardTitle" class="w-[350px]">
       <div class="space-y-4">
-        <AppInput v-model.trim="contactForm.name" placeholder="Name" />
+        <el-form-item prop="name">
+          <el-input v-model="contactForm.name" placeholder="Name" />
+        </el-form-item>
 
-        <AppInput v-model.trim="contactForm.description" placeholder="Description" />
+        <el-form-item prop="description">
+          <el-input v-model="contactForm.description" placeholder="Description" />
+        </el-form-item>
 
-        <AppInput v-model.trim="contactForm.image" placeholder="Image Link" />
+        <el-form-item>
+          <el-input v-model="contactForm.image" placeholder="Image Link" />
+        </el-form-item>
       </div>
 
       <template #footer>
-        <div class="px-6 pb-6 mt-2 flex gap-3">
-          <AppButton class="flex-auto" @click="$router.back">
-            Cancel
-          </AppButton>
+        <div class="mt-2 flex gap-2 justify-between w-full">
+          <el-button :type="$elComponentType.primary" class="flex-auto" @click="$router.back">Cancel</el-button>
 
-          <AppButton v-if="currentContact" class="flex-auto" @click="onDelete">
+          <el-button
+            v-if="currentContact"
+            :type="$elComponentType.danger"
+            class="flex-auto" @click="onDelete"
+          >
             Delete
-          </AppButton>
+          </el-button>
 
-          <AppButton class="flex-auto" :disabled="!isFormValid" @click="onSave">
+          <el-button
+            class="flex-auto"
+            :disabled="!isFormValid"
+            :type="$elComponentType.primary"
+            @click="onSave"
+          >
             <template #icon>
               <IconPlus class="w-5 h-5" />
             </template>
-
             Save
-          </AppButton>
+          </el-button>
         </div>
       </template>
-    </Card>
+    </el-card>
   </div>
 </template>
 

@@ -17,7 +17,7 @@ const contactsRoutes: Array<RouteRecordRaw> = [
     path: '/contacts/:contactId',
     name: contactsRoutesNames.upsertContact,
     component: UpsertContact,
-    beforeEnter (to, from, next) {
+    beforeEnter (to, _, next) {
       const { contacts } = useContactsStore()
       if (to.params.contactId === 'new' || contacts.find(c => c.id === +to.params.contactId)) {
         next()
