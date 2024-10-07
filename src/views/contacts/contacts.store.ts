@@ -17,9 +17,9 @@ export const useContactsStore = defineStore('contactsStore', () => {
   }
 
   function updateContact (contact: TUpdatePayload) {
-    return contactsService.updateContact(contact).then((res) => {
+    return contactsService.updateContact(contact).then(() => {
       const index = contacts.value.findIndex((item) => item.id === contact.id)
-      contacts.value[index] = res[0]
+      contacts.value[index] = contact
     })
   }
 

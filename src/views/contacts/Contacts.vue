@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-4">
+  <div v-loading.fullscreen="loading" class="flex items-center gap-4">
     <h3 class="font-medium m-0">Contact list</h3>
 
     <el-button :type="$elComponentType.primary" @click="createNewContact">
@@ -29,6 +29,7 @@
       @save="onEditSave($event, index)"
     />
   </div>
+  <h2 v-if="!contacts.length && !loading" class="w-full text-xl text-center">No Contacts</h2>
 </template>
 
 <script lang="ts" setup>
@@ -40,6 +41,8 @@ const { logout } = useAuthStore()
 const contactsStore = useContactsStore()
 const { getContacts, updateContact, deleteContact } = contactsStore
 const { contacts } = storeToRefs(contactsStore)
+
+const loading = ref(false)
 
 function createNewContact () {
   router.push({ name: $routeNames.upsertContact, params: { contactId: 'new' } })
@@ -63,6 +66,7 @@ function editContact (contactId: number) {
 }
 
 onMounted(() => {
-  getContacts()
+  loading.value = true
+  getContacts().finally(() => { loading.value = false })
 })
 </script>
