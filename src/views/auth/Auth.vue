@@ -49,6 +49,24 @@
 
 <script lang="ts" setup>
 
+import { ElNotification } from 'element-plus'
+
+const LoginErrorNonification = () => {
+  ElNotification({
+    title: 'Error',
+    message: 'Failed to log in',
+    type: 'error'
+  })
+}
+
+const RegisterErrorNonification = () => {
+  ElNotification({
+    title: 'Error',
+    message: 'Failed to sign up',
+    type: 'error'
+  })
+}
+
 const authTypes = {
   login: { title: 'Log In', linkBtn: 'Sing Up' },
   register: { title: 'Sign Up', linkBtn: 'Log In' }
@@ -86,10 +104,12 @@ function submit () {
       if (!isRegister.value) {
         login(formModel)
           .then(() => router.push({ name: $routeNames.contacts }))
+          .catch(() => { LoginErrorNonification() })
           .finally(() => (loading.value = false))
       } else {
         register(formModel)
           .then(() => router.push({ name: $routeNames.contacts }))
+          .catch(() => { RegisterErrorNonification() })
           .finally(() => (loading.value = false))
       }
     }

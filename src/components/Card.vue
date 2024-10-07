@@ -1,5 +1,5 @@
 <template>
-  <el-card
+  <div
     class="rounded-lg bg-white shadow relative flex flex-col"
   >
     <slot name="title">
@@ -19,7 +19,7 @@
     <div class="shrink-0">
       <slot name="footer" />
     </div>
-  </el-card>
+  </div>
 </template>
 
 <script lang="ts" setup>
