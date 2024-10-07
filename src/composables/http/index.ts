@@ -9,10 +9,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-    const { accessToken } = useAuthStore()
+    const { token } = useAuthStore()
 
-    if (accessToken) {
-      config.headers.authorization = `Bearer ${accessToken}`
+    if (token.access) {
+      config.headers.authorization = `Bearer ${token.access}`
     }
     return config
   }
@@ -20,12 +20,21 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   res => res.data,
-  error => {
-    console.log(error)
+  async error => {
+    const { logout, token, setToken } = useAuthStore()
 
-    const { logout } = useAuthStore()
     if (error.response.status === 401) {
-      logout()
+      const currTime = Math.floor(Date.now() / 1000)
+
+      if (token.expiresAt && currTime >= token.expiresAt) {
+        if (token.refresh) {
+          const res = await authService.refreshToken(token.refresh)
+
+          setToken(res)
+
+          // logout()
+        }
+      }
     }
 
     return Promise.reject(error)

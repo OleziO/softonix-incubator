@@ -1,12 +1,15 @@
 <template>
   <div class="flex justify-center">
-    <Card :title="cardTitle" class="w-[350px]">
+    <Card v-loading="loading" :title="cardTitle" class="w-[350px]">
       <div class="space-y-4">
         <AppInput v-model.trim="contactForm.name" placeholder="Name" />
 
         <AppInput v-model.trim="contactForm.description" placeholder="Description" />
 
-        <AppInput v-model.trim="contactForm.image" placeholder="Image Link" />
+        <AppInput
+          v-if="cardTitle !== 'New Contact'"
+          v-model.trim="(contactForm as IContact).image" placeholder="Image Link"
+        />
       </div>
 
       <template #footer>
@@ -41,37 +44,50 @@ const contactsStore = useContactsStore()
 const { contacts } = storeToRefs(contactsStore)
 const { addContact, updateContact, deleteContact } = contactsStore
 
+const loading = ref(false)
 const currentContact = computed(() => contacts.value.find(c => c.id === +route.params.contactId))
 
 const cardTitle = computed(() => {
   return currentContact.value ? 'Edit Contact' : 'New Contact'
 })
 
-const contactForm = reactive<IContact>(currentContact.value
+const contactForm = reactive<IContact | TNewContactPayload>(currentContact.value
   ? { ...currentContact.value }
   : {
-    id: contacts.value.length + 1,
     name: '',
-    description: '',
-    image: ''
+    description: ''
   })
 
 const isFormValid = computed(() => {
-  const { image, ...contact } = contactForm
+  const { ...contact } = contactForm
   return Object.values(contact).every(c => !!c)
 })
 
 function onDelete () {
-  deleteContact(currentContact.value as IContact)
-  router.replace({ name: $routeNames.contacts })
+  loading.value = true
+
+  deleteContact(currentContact.value as TDeletePayload)
+    .then(() => {
+      router.replace({ name: $routeNames.contacts })
+    })
+    .finally(() => {
+      loading.value = false
+    })
 }
 
-function onSave () {
-  if (currentContact.value) {
-    updateContact(contactForm)
-  } else {
-    addContact(contactForm)
+async function onSave () {
+  loading.value = true
+
+  try {
+    if (currentContact.value) {
+      await updateContact(contactForm as IContact)
+    } else {
+      await addContact(contactForm as TNewContactPayload)
+    }
+
+    router.replace({ name: $routeNames.contacts })
+  } finally {
+    loading.value = false
   }
-  router.push({ name: $routeNames.contacts })
 }
 </script>

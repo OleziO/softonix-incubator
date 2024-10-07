@@ -1,8 +1,10 @@
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<IContact[]>([])
 
-  const getContacts = () => {
-    if (contacts.value.length) return
+  const forceUpdate = true
+
+  const getContacts = (forceUpdae?: boolean) => {
+    if (contacts.value.length && !forceUpdae) return
 
     return contactsService.getContacts()
       .then(res => {
@@ -10,18 +12,22 @@ export const useContactsStore = defineStore('contactsStore', () => {
       })
   }
 
-  function addContact (contact: IContact) {
-    contacts.value.push(contact)
+  function addContact (contact: TNewContactPayload) {
+    return contactsService.createContact(contact).then(() => {
+      getContacts(forceUpdate) // refactor
+    })
   }
 
-  function updateContact (contact: IContact) {
-    const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
-    contacts.value[currentIndex] = { ...contact }
+  function updateContact (contact: TUpdatePayload) {
+    return contactsService.updateContact(contact).then(() => {
+      getContacts(forceUpdate) // refactor
+    })
   }
 
   function deleteContact (contact: IContact) {
-    const currentIndex = contacts.value.findIndex(c => c.id === contact.id)
-    contacts.value.splice(currentIndex, 1)
+    return contactsService.deleteContact(contact).then(() => {
+      getContacts(forceUpdate) // refactor
+    })
   }
 
   return {

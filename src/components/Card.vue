@@ -1,5 +1,7 @@
 <template>
-  <div class="rounded-lg bg-white shadow relative flex flex-col">
+  <el-card
+    class="rounded-lg bg-white shadow relative flex flex-col"
+  >
     <slot name="title">
       <h3 v-if="title" class="font-semibold px-6 pt-6 pb-4">{{ title }}</h3>
     </slot>
@@ -17,7 +19,7 @@
     <div class="shrink-0">
       <slot name="footer" />
     </div>
-  </div>
+  </el-card>
 </template>
 
 <script lang="ts" setup>

@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card v-loading="contact.loading">
     <div class="flex">
       <div class="flex-grow text-sm truncate" @click.stop>
         <template v-if="editMode">
@@ -68,7 +68,10 @@
     </div>
 
     <template #footer>
-      <div class="flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light" @click.stop>
+      <div
+        class="flex text-sm font-medium text-gray-dark border-t border-gray-ultra-light"
+        @click.stop
+      >
         <div class="flex items-center justify-center flex-1 py-4 cursor-pointer hover:text-gray">
           <IconEnvelope />
           <span class="ml-3">Email</span>
@@ -88,6 +91,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   contact: IContact
+  loading?: boolean
 }>()
 
 const emit = defineEmits(['delete', 'save'])

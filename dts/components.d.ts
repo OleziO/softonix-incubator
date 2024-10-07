@@ -12,6 +12,7 @@ declare module 'vue' {
     Card: typeof import('./../src/components/Card.vue')['default']
     ContactItem: typeof import('./../src/views/contacts/components/ContactItem.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElButtoN: typeof import('element-plus/es')['ElButtoN']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']

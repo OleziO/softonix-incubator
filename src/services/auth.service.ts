@@ -1,17 +1,16 @@
 class AuthService {
-  // auth/v1/token?grant_type=password
-  login (payload: ILoginRequest) {
-    return useHttp.post('auth/v1/token?grant_type=password', payload)
+  #authLink = 'auth/v1'
+
+  login (payload: IAuthRequest) {
+    return useHttp.post(`${this.#authLink}/token?grant_type=password`, payload)
   }
 
-  // POST: auth/v1/signup, Payload: { email: string, password: string }
-  register () {
-    return {}
+  register (payload: IAuthRequest) {
+    return useHttp.post(`${this.#authLink}/signup`, payload)
   }
 
-  // auth/v1/token?grant_type=refresh_token / { refresh_token: "the-refresh-token" }
-  refreshToken () {
-    return ''
+  refreshToken (payload: string) {
+    return useHttp.post(`${this.#authLink}/token?grant_type=refresh_token`, { refresh_token: payload })
   }
 }
 
