@@ -51,7 +51,7 @@
 
 import { ElNotification } from 'element-plus'
 
-const ErrorNonification = (message: string) => {
+const ErrorNotification = (message: string) => {
   ElNotification({
     title: 'Error',
     message,
@@ -93,17 +93,12 @@ function submit () {
     if (isValid) {
       loading.value = true
 
-      if (!isRegister.value) {
-        login(formModel)
-          .then(() => router.push({ name: $routeNames.contacts }))
-          .catch(() => { ErrorNonification('Failed to log in') })
-          .finally(() => (loading.value = false))
-      } else {
-        register(formModel)
-          .then(() => router.push({ name: $routeNames.contacts }))
-          .catch(() => { ErrorNonification('Failed to sign up') })
-          .finally(() => (loading.value = false))
-      }
+      const method = isRegister.value ? register : login
+
+      method(formModel)
+        .then(() => router.push({ name: $routeNames.contacts }))
+        .catch(() => { isRegister.value ? ErrorNotification('Failed to sign up') : ErrorNotification('Failed to log in') })
+        .finally(() => (loading.value = false))
     }
   })
 }
