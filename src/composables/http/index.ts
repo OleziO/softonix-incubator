@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { useAuthStore } from '@/views/auth/auth.store'
+import { authService } from '@/services/auth.service'
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -6,6 +8,8 @@ const instance = axios.create({
     apikey: import.meta.env.VITE_API_KEY
   }
 })
+
+let refreshTokenPromise: Promise<any> | null = null // for preventing new requests until the prev has completed
 
 instance.interceptors.request.use(
   config => {
@@ -19,22 +23,39 @@ instance.interceptors.request.use(
 )
 
 instance.interceptors.response.use(
-  res => res.data,
-  async error => {
+  res => {
     const { logout, token, setToken } = useAuthStore()
 
-    if (error.response.status === 401) {
-      const currTime = Math.floor(Date.now() / 1000)
+    const currTime = Math.floor(Date.now() / 1000)
+    const diffTime = token.expiresAt - currTime
 
-      if (token.expiresAt && currTime >= token.expiresAt) {
-        if (token.refresh) {
-          const res = await authService.refreshToken(token.refresh)
+    function shouldRefresh () {
+      return diffTime <= 60 && diffTime > 0
+    } // 60 seconds before token expires
 
-          setToken(res)
-
-          // logout()
-        }
+    if (token.access) {
+      if (shouldRefresh() && token.refresh && !refreshTokenPromise) {
+        refreshTokenPromise = authService.refreshToken(token.refresh).then(newToken => {
+          setToken(newToken)
+          refreshTokenPromise = null
+          return newToken
+        })
+          .catch(() => {
+            refreshTokenPromise = null
+            logout()
+          })
+      } else if (diffTime <= 0) {
+        logout()
       }
+    }
+
+    return res.data
+  },
+  error => {
+    const { logout } = useAuthStore()
+
+    if (error.response.status === 401) {
+      logout()
     }
 
     return Promise.reject(error)
