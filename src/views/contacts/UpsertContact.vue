@@ -7,7 +7,7 @@
         <AppInput v-model.trim="contactForm.description" placeholder="Description" />
 
         <AppInput
-          v-if="cardTitle !== 'New Contact'"
+          v-if="currentContact"
           v-model.trim="(contactForm as IContact).image" placeholder="Image Link"
         />
       </div>
