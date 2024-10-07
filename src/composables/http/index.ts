@@ -44,7 +44,7 @@ instance.interceptors.response.use(
             refreshTokenPromise = null
             logout()
           })
-      } else if (diffTime <= 0) {
+      } else if (diffTime <= 0 && !token.refresh) {
         logout()
       }
     }
