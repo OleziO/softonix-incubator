@@ -3,8 +3,8 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
   const forceUpdate = true
 
-  const getContacts = (forceUpdae?: boolean) => {
-    if (contacts.value.length && !forceUpdae) return
+  const getContacts = (forceUpdate?: boolean) => {
+    if (contacts.value.length && !forceUpdate) return
 
     return contactsService.getContacts()
       .then(res => {
