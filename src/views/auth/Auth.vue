@@ -51,18 +51,10 @@
 
 import { ElNotification } from 'element-plus'
 
-const LoginErrorNonification = () => {
+const ErrorNonification = (message: string) => {
   ElNotification({
     title: 'Error',
-    message: 'Failed to log in',
-    type: 'error'
-  })
-}
-
-const RegisterErrorNonification = () => {
-  ElNotification({
-    title: 'Error',
-    message: 'Failed to sign up',
+    message,
     type: 'error'
   })
 }
@@ -104,12 +96,12 @@ function submit () {
       if (!isRegister.value) {
         login(formModel)
           .then(() => router.push({ name: $routeNames.contacts }))
-          .catch(() => { LoginErrorNonification() })
+          .catch(() => { ErrorNonification('Failed to log in') })
           .finally(() => (loading.value = false))
       } else {
         register(formModel)
           .then(() => router.push({ name: $routeNames.contacts }))
-          .catch(() => { RegisterErrorNonification() })
+          .catch(() => { ErrorNonification('Failed to sign up') })
           .finally(() => (loading.value = false))
       }
     }
