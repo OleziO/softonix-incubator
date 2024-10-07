@@ -60,7 +60,7 @@ const ErrorNotification = (message: string) => {
 }
 
 const authTypes = {
-  login: { title: 'Log In', linkBtn: 'Sing Up' },
+  login: { title: 'Log In', linkBtn: 'Sign Up' },
   register: { title: 'Sign Up', linkBtn: 'Log In' }
 }
 
