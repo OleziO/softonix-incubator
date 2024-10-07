@@ -9,7 +9,7 @@ const instance = axios.create({
   }
 })
 
-let refreshTokenPromise: Promise<any> | null = null // for preventing new requests until the prev has completed
+let refreshTokenPromise: Promise<any> | null = null // for preventing new requests until the prev has not completed
 
 instance.interceptors.request.use(
   config => {
