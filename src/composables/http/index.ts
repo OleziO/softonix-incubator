@@ -37,13 +37,13 @@ instance.interceptors.response.use(
       if (shouldRefresh() && token.refresh && !refreshTokenPromise) {
         refreshTokenPromise = authService.refreshToken(token.refresh).then(newToken => {
           setToken(newToken)
-          refreshTokenPromise = null
+
           return newToken
         })
           .catch(() => {
-            refreshTokenPromise = null
             logout()
           })
+          .finally(() => { refreshTokenPromise = null })
       } else if (diffTime <= 0 || !token.refresh) {
         logout()
       }
