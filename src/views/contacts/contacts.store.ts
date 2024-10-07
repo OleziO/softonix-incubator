@@ -1,8 +1,8 @@
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<IContact[]>([])
 
-  const getContacts = async () => {
-    if (contacts.value.length) return
+  const getContacts = async (force?: boolean) => {
+    if (contacts.value.length && !force) return
 
     return contactsService.getContacts()
       .then(res => {
@@ -12,7 +12,7 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
   function addContact (contact: TNewContactPayload) {
     return contactsService.createContact(contact).then(() => {
-      getContacts()
+      getContacts(true)
     })
   }
 
