@@ -1,7 +1,7 @@
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<IContact[]>([])
 
-  const getContacts = (forceUpdate?: boolean) => {
+  const getContacts = async (forceUpdate?: boolean) => {
     if (contacts.value.length && !forceUpdate) return
 
     return contactsService.getContacts()
