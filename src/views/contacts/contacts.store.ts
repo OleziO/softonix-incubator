@@ -14,19 +14,19 @@ export const useContactsStore = defineStore('contactsStore', () => {
 
   function addContact (contact: TNewContactPayload) {
     return contactsService.createContact(contact).then(() => {
-      getContacts(forceUpdate) // refactor
+      getContacts(forceUpdate)
     })
   }
 
   function updateContact (contact: TUpdatePayload) {
     return contactsService.updateContact(contact).then(() => {
-      getContacts(forceUpdate) // refactor
+      getContacts(forceUpdate)
     })
   }
 
   function deleteContact (contact: IContact) {
     return contactsService.deleteContact(contact).then(() => {
-      getContacts(forceUpdate) // refactor
+      getContacts(forceUpdate)
     })
   }
 
