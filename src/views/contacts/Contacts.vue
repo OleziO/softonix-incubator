@@ -21,6 +21,9 @@
   <AsyncExample v-if="!loading" />
 
   <div class="grid-cols-[repeat(auto-fill,_minmax(320px,_1fr))] grid gap-5 my-5">
+    <!-- TODO: Use this to test broken images:
+     :contact="i % 2 ? contact : {...contact, image: 'qwerty'}"
+      -->
     <ContactItem
       v-for="contact in contacts"
       :key="contact.id"
@@ -35,7 +38,6 @@
 
 <script lang="ts" setup>
 const router = useRouter()
-const AsyncExample = defineAsyncComponent(() => import('./components/AsyncExample.vue'))
 
 const { $routeNames } = useGlobalProperties()
 
@@ -54,7 +56,6 @@ function editContact (contactId: number) {
 }
 
 onMounted(() => {
-  // get data for the page
   getContacts()
     .finally(() => (loading.value = false))
 })

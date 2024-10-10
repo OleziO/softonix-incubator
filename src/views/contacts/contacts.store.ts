@@ -7,6 +7,13 @@ export const useContactsStore = defineStore('contactsStore', () => {
     return contactsService.getContacts()
       .then(res => {
         contacts.value = res
+
+        // TODO: Uncomment to test
+        // contacts.value.push(...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res, ...res)
+        // contacts.value.push(...contacts.value)
+        // contacts.value.push(...contacts.value)
+        // contacts.value.push(...contacts.value)
+        // contacts.value.push(...contacts.value)
       })
   }
 
